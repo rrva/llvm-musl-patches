@@ -4,8 +4,6 @@
    mipsel mips64 mips64el powerpc64 powerpc64le)
  filter_available_targets(SAFESTACK_SUPPORTED_ARCH x86_64 i386 i686)
  
-+string(REGEX MATCH "musl[^-]*$" LLVM_ENV_MUSL ${LLVM_HOST_TRIPLE})
-+
  if(ANDROID)
    set(OS_NAME "Android")
  else()
