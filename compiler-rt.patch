@@ -1,20 +1,14 @@
 --- cmake/config-ix.cmake.orig
 +++ cmake/config-ix.cmake
-@@ -264,13 +264,15 @@
-   mipsel mips64 mips64el powerpc64 powerpc64le)
- filter_available_targets(SAFESTACK_SUPPORTED_ARCH x86_64 i386 i686)
- 
- if(ANDROID)
-   set(OS_NAME "Android")
- else()
-   set(OS_NAME "${CMAKE_SYSTEM_NAME}")
- endif()
- 
--if (SANITIZER_COMMON_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
-+if (OS_NAME MATCHES "FOO" AND SANITIZER_COMMON_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND NOT LLVM_ENV_MUSL AND
+@@ -273,7 +273,7 @@
+ if (SANITIZER_COMMON_SUPPORTED_ARCH AND NOT LLVM_USE_SANITIZER AND
      (OS_NAME MATCHES "Android|Darwin|Linux|FreeBSD" OR
      (OS_NAME MATCHES "Windows" AND MSVC)))
-   set(COMPILER_RT_HAS_SANITIZER_COMMON TRUE)
+-  set(COMPILER_RT_HAS_SANITIZER_COMMON TRUE)
++  set(COMPILER_RT_HAS_SANITIZER_COMMON FALSE)
+ else()
+   set(COMPILER_RT_HAS_SANITIZER_COMMON FALSE)
+ endif()
 --- ./lib/Makefile.mk.orig
 +++ lib/Makefile.mk
 @@ -10,10 +10,6 @@
