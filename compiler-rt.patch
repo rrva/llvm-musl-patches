@@ -1,0 +1,13 @@
+--- lib/Makefile.mk.orig
++++ lib/Makefile.mk
+@@ -10,10 +10,6 @@
+ SubDirs :=
+ 
+ # Add submodules.
+-SubDirs += asan
+ SubDirs += builtins
+ SubDirs += interception
+-SubDirs += lsan
+ SubDirs += profile
+-SubDirs += sanitizer_common
+-SubDirs += ubsan
